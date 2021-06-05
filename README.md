@@ -40,6 +40,10 @@ Make sure to reboot.
 
 Then give it a spin.
 
+***Install***
+put this url during setup https://smiskol.com/fork/Circuit-Pro/hkg_085/Installing
+
+
 ***Behavior Notes***
 
 OpenPilot will not see totally stopped cars yet until E2E comes so do not trust it to see and stop for a COMPLETLY stopped car.
