@@ -37,7 +37,7 @@ Make sure to reboot.
 Then give it a spin.
 
 ***Install***
-put this url during setup https://smiskol.com/fork/Circuit-Pro/hkg_085/HKG-Long
+put this url during setup https://smiskol.com/fork/Circuit-Pro/hkg_085
 
 
 ***Behavior Notes***
