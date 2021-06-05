@@ -10,10 +10,6 @@
 
 **This fork has full long control for older 2015 & 2016 Genesis G80 without any radar harness mod. All other cars require scc to be moved to bus 2 from bus 0 for full long control.**
 
-**Make sure to shut off upload raw logs** to prevent your comma device from being banned from comma services.
-
-**If your Comma.ai device was banned from comma services please use branch 085_retropilot and sign up here for and account and register your device**
-
 https://api.retropilot.org/useradmin
 
 Make sure to shut off auto start stop or you will get steering temporarily unavailable if the engine shuts off.
