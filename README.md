@@ -37,7 +37,9 @@ Make sure to reboot.
 Then give it a spin.
 
 ***Install***
-put this url during setup https://smiskol.com/fork/Circuit-Pro/hkg_085
+
+put this url during setup for stable 'https://smiskol.com/fork/Circuit-Pro/hkg_085'
+put this url during setup for fixed version of arne-pilot-7.10 hkg 'https://smiskol.com/fork/Circuit-Pro/Arne-Pilot-7.10'
 
 
 ***Behavior Notes***
