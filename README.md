@@ -1,6 +1,3 @@
-
-Test auto update
-
 **This is based on xx979xx & Neokii's fork and is tuned for Genesis G70, Kia Stinger, and works on others but not tested..**
 
 **Reach out to johnpr#5623 on discord too buy a harness.**
