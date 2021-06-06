@@ -1,3 +1,13 @@
+***Install***
+
+put this url during setup for stable 'https://smiskol.com/fork/Circuit-Pro/hkg_085'
+put this url during setup for Dev 'https://smiskol.com/fork/Circuit-Pro/hkg_085_dev'
+
+If you ran 'git clone https://github.com/Circuit-Pro/openpilot.git' make sure to run 'rm /data/params/d/DongleId' to reset your dongle ID.
+
+Run nTune after 30 - 50 miles of driving. It autotune lateral control. Use this command 'cd selfdrive && python ntune.py' (make sure your not driving!)
+
+
 **This is based on xx979xx & Neokii's fork and is tuned for Genesis G70, Kia Stinger, and works on others but not tested..**
 
 **Reach out to johnpr#5623 on discord too buy a harness.**
@@ -30,17 +40,9 @@ Smooth SCC with SCC smoother
 
 SCC sync set speed on gas press.
 
-Run nTune after 30 - 50 miles of driving you should autotune lateral control. use this command cd selfdrive && python ntune.py (make sure your not driving!)
-
-Make sure to reboot.
+Make sure to reboot with toggle changes.
 
 Then give it a spin.
-
-***Install***
-
-put this url during setup for stable 'https://smiskol.com/fork/Circuit-Pro/hkg_085'
-put this url during setup for fixed version of arne-pilot-7.10 hkg 'https://smiskol.com/fork/Circuit-Pro/Arne-Pilot-7.10'
-
 
 ***Behavior Notes***
 
