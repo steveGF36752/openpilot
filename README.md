@@ -10,8 +10,9 @@
 
 ***Install***
 
-put this url during setup for stable 'https://smiskol.com/fork/Circuit-Pro/hkg_085'
-put this url during setup for Dev 'https://smiskol.com/fork/Circuit-Pro/hkg_085_dev'
+Put this url during setup for stable 'https://smiskol.com/fork/Circuit-Pro/hkg_085'
+
+Put this url during setup for Dev 'https://smiskol.com/fork/Circuit-Pro/hkg_085_dev'
 
 If you ran 'git clone https://github.com/Circuit-Pro/openpilot.git' make sure to run 'rm /data/params/d/DongleId' to reset your dongle ID.
 
