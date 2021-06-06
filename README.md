@@ -28,7 +28,7 @@ Long control is radar + vision
 
 Slow down for curves (BETA Reach out to johnpr#5623 if you find any better tunes.)
 
-MAD mode(ON by default) for no disengae on brake or gas (Disables Logging)
+MAD mode (ON by default) for no disengae on brake or gas.
 
 SMDPS Toggle available for thoes with SMPDS.
 
