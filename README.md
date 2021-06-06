@@ -7,9 +7,6 @@ If you ran 'git clone https://github.com/Circuit-Pro/openpilot.git' make sure to
 
 Run nTune after 30 - 50 miles of driving. It autotune lateral control. Use this command 'cd selfdrive && python ntune.py' (make sure your not driving!)
 
-
-**This is based on xx979xx & Neokii's fork and is tuned for Genesis G70, Kia Stinger, and works on others but not tested..**
-
 **Reach out to johnpr#5623 on discord too buy a harness.**
 
 **By using this software you are responsible for anything that occurs while OpenPilot is engaged or disengaged. Be ready to take over at any moment. Fork maintainers assumes no liability for your use of this software and any hardware.**
@@ -32,6 +29,8 @@ Slow down for curves (BETA Reach out to johnpr#5623 if you find any better tunes
 
 MAD mode(ON by default) for no disengae on brake or gas (Disables Logging)
 
+SMDPS Toggle available for thoes with SMPDS.
+
 On screen blinkers and blind spot alerts.
 
 Auto Lane Change with Blind spot monitoring (No Nudge)
@@ -49,6 +48,10 @@ Then give it a spin.
 OpenPilot will not see totally stopped cars yet until E2E comes so do not trust it to see and stop for a COMPLETLY stopped car.
 
 If Collision Warning is beeping at you OpenPilot has calculated it can't stop quick enough due to safety limitations on unintentional braking. Please apply brakes to avoid collision.
+
+**This is based on xx979xx & Neokii's fork and is tuned for Genesis G70, Kia Stinger, and works on others but not tested..**
+
+https://github.com/neokii/op4
 
 https://github.com/xx979xx/openpilot
 
