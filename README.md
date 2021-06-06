@@ -2,7 +2,7 @@
 
 **This fork is community supported we appreciate all help! Too get involved msg johnpr#5623 on discord.**
 
-**This fork has full long control for all HKG and Harnessless for older 2015 & 2016 Genesis G80 without any radar harness mod. All other cars should require scc to be moved to bus 2 from bus 0 for full long control, So test out HKG Long even if you don't have a harness test it out and let me know if it works and your car isn't on this list.**
+**This fork has full long control for all HKG and Harnessless for older 2015 & 2016 Genesis G80 without any radar harness mod. All other cars should require scc to be moved to bus 2 from bus 0 for full long control. Test out HKG Long even if you don't have a harness. It might work and let me know if it works and your car isn't on this list.**
 
 **Reach out to johnpr#5623 on discord too buy a harness.**
 
