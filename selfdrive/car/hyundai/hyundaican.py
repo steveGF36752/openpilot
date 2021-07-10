@@ -66,7 +66,7 @@ def create_lkas11(packer, frame, car_fingerprint, apply_steer, steer_req,
   elif car_fingerprint in CHECKSUM["7B"]: #fixed JPR
     # Checksum of first 6 Bytes and last Byte as seen on 2018 Kia Stinger
     checksum = (sum(dat[:6]) + dat[7]) % 256
-
+}
   values["CF_Lkas_Chksum"] = checksum
 
   return packer.make_can_msg("LKAS11", bus, values)
