@@ -1,5 +1,12 @@
 Version 0.8.5 (2021-7-7)
 ========================
+* If you got this please update to 0.8.6 unless you have compatibility issues.
+  * If you have compatibility issues, please post them here in issues. -> https://discord.gg/dUPAEBdTkW
+  * This version is no longer actively updated.
+  * Install with this link in Setup or update with this ssh command.
+    * https://smiskol.com/fork/Circuit-Pro/hkg_086
+    * git remote add Circuit-Pro https://github.com/Circuit-Pro/openpilot &&  git fetch --all && git checkout hkg_086 && reboot
+
 * Fix 2017 Elantra
 * Adjust Neokii's fix for auto resume for 2020 sonata.
 * Customize your Boot logo in `settings` under `device`. (Resets after an update.)
