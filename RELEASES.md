@@ -1,6 +1,8 @@
 Version 0.8.7 (2021-)
 ========================
 * Attemped to fix SPAS.
+* Added use LQR Toggle.
+* Work on broken tunes and tidy up code.
 * Fixed Kia Niro 2019 HEV FW Fingerprint V2
 * Fixed on screen BMS and animated blinkers.
 * New driving model with improved laneless performance
