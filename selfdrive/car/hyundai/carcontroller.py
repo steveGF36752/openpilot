@@ -289,12 +289,6 @@ class CarController():
       self.scc12_cnt += 1
 
     # 20 Hz LFA MFA message
-    if frame % 5 == 0:
-      activated_hda = road_speed_limiter_get_active()
-      # activated_hda: 0 - off, 1 - main road, 2 - highway
-      if self.car_fingerprint in FEATURES["send_lfa_mfa"]:
-        can_sends.append(create_lfahda_mfc(self.packer, enabled, activated_hda))
-    
     if CS.spas_enabled:
       if CS.mdps_bus:
         can_sends.append(create_ems11(self.packer, CS.ems11, spas_active))
@@ -323,14 +317,14 @@ class CarController():
         self.en_cnt += 1
         can_sends.append(create_spas11(self.packer, self.car_fingerprint, (frame // 2), self.en_spas, self.apply_steer_ang, CS.mdps_bus))
 
-      # SPAS12 20Hz
+      # SPAS12 20Hz & 20 Hz LFA MFA message
       if (frame % 5) == 0:
         can_sends.append(create_spas12(CS.mdps_bus))
         activated_hda = road_speed_limiter_get_active()
       # activated_hda: 0 - off, 1 - main road, 2 - highway
-      if self.car_fingerprint in FEATURES["send_lfa_mfa"]:
-        can_sends.append(create_lfahda_mfc(self.packer, enabled, activated_hda))
-      elif CS.mdps_bus == 0:
-        can_sends.append(create_hda_mfc(self.packer, activated_hda))
+        if self.car_fingerprint in FEATURES["send_lfa_mfa"]:
+          can_sends.append(create_lfahda_mfc(self.packer, enabled, activated_hda))
+        elif CS.mdps_bus == 0:
+          can_sends.append(create_hda_mfc(self.packer, activated_hda))
 
     return can_sends
