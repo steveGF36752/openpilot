@@ -19,7 +19,7 @@ VisualAlert = car.CarControl.HUDControl.VisualAlert
 
 # SPAS steering limits
 STEER_ANG_MAX = 360          # SPAS Max Angle
-STEER_ANG_MAX_RATE = 0.1    # SPAS Degrees per ms
+STEER_ANG_MAX_RATE = 0.8    # SPAS Degrees per ms
 def accel_hysteresis(accel, accel_steady):
   # for small accel oscillations within ACCEL_HYST_GAP, don't change the accel command
   if accel > accel_steady + CarControllerParams.ACCEL_HYST_GAP:
@@ -206,7 +206,7 @@ class CarController():
                                      CS.lkas11, sys_warning, sys_state, enabled, left_lane, right_lane,
                                      left_lane_warning, right_lane_warning, 1))
 
-    if CS.mdps_bus: # send clu11 to mdps if it is not on bus 0
+    if frame % 2 and CS.mdps_bus: # send clu11 to mdps if it is not on bus 0
       can_sends.append(create_clu11(self.packer, frame, CS.mdps_bus, CS.clu11, Buttons.NONE, enabled_speed))
 
     if pcm_cancel_cmd and (self.longcontrol and not self.mad_mode_enabled):
@@ -303,7 +303,7 @@ class CarController():
       # SPAS11 50hz
       if (frame % 2) == 0:
         if CS.mdps11_stat == 7 and not self.mdps11_stat_last == 7:
-          self.en_spas == 7
+          self.en_spas = 7
           self.en_cnt = 0
 
         if self.en_spas == 7 and self.en_cnt >= 8:
