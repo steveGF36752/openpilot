@@ -317,7 +317,7 @@ class CarController():
         self.en_cnt += 1
         can_sends.append(create_spas11(self.packer, self.car_fingerprint, (frame // 2), self.en_spas, self.apply_steer_ang, CS.mdps_bus))
 
-      # SPAS12 20Hz & 20 Hz LFA MFA message
+      # SPAS12 20Hz & LFA MFA message 20 Hz
       if (frame % 5) == 0:
         can_sends.append(create_spas12(CS.mdps_bus))
         activated_hda = road_speed_limiter_get_active()
