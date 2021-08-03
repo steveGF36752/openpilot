@@ -20,7 +20,9 @@ VisualAlert = car.CarControl.HUDControl.VisualAlert
 # SPAS steering limits
 STEER_ANG_MAX = 360          # SPAS Max Angle
 STEER_ANG_MAX_RATE = 1.5    # SPAS Degrees per ms
+
 def accel_hysteresis(accel, accel_steady):
+
   # for small accel oscillations within ACCEL_HYST_GAP, don't change the accel command
   if accel > accel_steady + CarControllerParams.ACCEL_HYST_GAP:
     accel_steady = accel - CarControllerParams.ACCEL_HYST_GAP
@@ -95,6 +97,7 @@ class CarController():
 
     # gas and brake
     apply_accel = actuators.gas - actuators.brake
+
     apply_accel, self.accel_steady = accel_hysteresis(apply_accel, self.accel_steady)
     apply_accel = self.scc_smoother.get_accel(CS, controls.sm, apply_accel)
     apply_accel = clip(apply_accel * CarControllerParams.ACCEL_SCALE,
@@ -163,7 +166,7 @@ class CarController():
                         left_lane, right_lane, left_lane_depart, right_lane_depart)
 
     clu11_speed = CS.clu11["CF_Clu_Vanz"]
-    enabled_speed = 38 if CS.is_set_speed_in_mph else 60
+    enabled_speed = 38 if CS.is_set_speed_in_mph  else 60
     if clu11_speed > enabled_speed or not lkas_active:
       enabled_speed = clu11_speed
 
@@ -216,8 +219,9 @@ class CarController():
 
     # fix auto resume - by neokii
     if CS.out.cruiseState.standstill:
-
+      # run only first time when the car stopped
       if self.last_lead_distance == 0:
+        # get the lead distance from the Radar
         self.last_lead_distance = CS.lead_distance
         self.resume_cnt = 0
         self.resume_wait_timer = 0
@@ -232,11 +236,10 @@ class CarController():
       elif abs(CS.lead_distance - self.last_lead_distance) > 0.01:
         can_sends.append(create_clu11(self.packer, self.resume_cnt, CS.scc_bus, CS.clu11, Buttons.RES_ACCEL, clu11_speed))
         self.resume_cnt += 1
-
-        if self.resume_cnt >= 8:
-          self.resume_cnt = 0
-          self.resume_wait_timer = SccSmoother.get_wait_count() * 2
-
+        # interval after 6 msgs
+        if self.resume_cnt > 5:
+          self.last_resume_frame = frame
+          self.clu11_cnt = 0
     # reset lead distnce after the car starts moving
     elif self.last_lead_distance != 0:
       self.last_lead_distance = 0
