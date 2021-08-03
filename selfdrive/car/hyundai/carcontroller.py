@@ -109,7 +109,7 @@ class CarController():
 
     # SPAS limit angle extremes for safety
     if CS.spas_enabled:
-      apply_steer_ang_req = actuators.steer * 180 / 3.14
+      apply_steer_ang_req = clip(actuators.steerAngle, -1*(STEER_ANG_MAX), STEER_ANG_MAX)
       # SPAS limit angle rate for safety
       if abs(self.apply_steer_ang - apply_steer_ang_req) > STEER_ANG_MAX_RATE:
         if apply_steer_ang_req > self.apply_steer_ang:
@@ -118,7 +118,7 @@ class CarController():
           self.apply_steer_ang -= STEER_ANG_MAX_RATE
       else:
         self.apply_steer_ang = apply_steer_ang_req
-      spas_active = CS.spas_enabled and enabled and (self.spas_always or CS.out.vEgo < 5) # 25km/h
+    spas_active = CS.spas_enabled and enabled and (self.spas_always or CS.out.vEgo < 7.0) # 25km/h
 
     # disable if steer angle reach 90 deg, otherwise mdps fault in some models
     lkas_active = enabled and abs(CS.out.steeringAngleDeg) < CS.CP.maxSteeringAngleDeg and not spas_active
@@ -206,7 +206,7 @@ class CarController():
                                      CS.lkas11, sys_warning, sys_state, enabled, left_lane, right_lane,
                                      left_lane_warning, right_lane_warning, 1))
 
-    if frame % 2 and CS.mdps_bus: # send clu11 to mdps if it is not on bus 0
+    if CS.mdps_bus: # send clu11 to mdps if it is not on bus 0
       can_sends.append(create_clu11(self.packer, frame, CS.mdps_bus, CS.clu11, Buttons.NONE, enabled_speed))
 
     if pcm_cancel_cmd and (self.longcontrol and not self.mad_mode_enabled):
@@ -300,6 +300,7 @@ class CarController():
       if CS.mdps_bus:
         can_sends.append(create_ems11(self.packer, CS.ems11, spas_active))
 
+      # SPAS11 50hz
       if (frame % 2) == 0:
         if CS.mdps11_stat == 7 and not self.mdps11_stat_last == 7:
           self.en_spas == 7
@@ -308,7 +309,7 @@ class CarController():
         if self.en_spas == 7 and self.en_cnt >= 8:
           self.en_spas = 3
           self.en_cnt = 0
-
+  
         if self.en_cnt < 8 and spas_active:
           self.en_spas = 4
         elif self.en_cnt >= 8 and spas_active:
