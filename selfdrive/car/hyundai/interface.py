@@ -107,24 +107,8 @@ class CarInterface(CarInterfaceBase):
       ret.wheelbase = 3.01
       ret.centerToFront = ret.wheelbase * 0.4
       ret.minSteerSpeed = 60 * CV.KPH_TO_MS
+      ret.steerRatio = 16.5
       os.system("cd /data/openpilot/selfdrive/assets && rm -rf img_spinner_comma.png && cp Genesis.png img_spinner_comma.png")
-
-      ret.lateralTuning.init('indi')
-      ret.lateralTuning.indi.innerLoopGainBP = [0.]
-      ret.lateralTuning.indi.innerLoopGainV = [3.1]
-      ret.lateralTuning.indi.outerLoopGainBP = [0.]
-      ret.lateralTuning.indi.outerLoopGainV = [2.5]
-      ret.lateralTuning.indi.timeConstantBP = [0.]
-      ret.lateralTuning.indi.timeConstantV = [1.4]
-      ret.lateralTuning.indi.actuatorEffectivenessBP = [0.]
-      ret.lateralTuning.indi.actuatorEffectivenessV = [2.]
-
-    # longitudinal
-      ret.brakeMaxBP = [0, 70.*CV.KPH_TO_MS, 130.*CV.KPH_TO_MS]
-      ret.brakeMaxV = [3.5, 2.8, 1.78]
-      ret.gasMaxBP = [0., 10.*CV.KPH_TO_MS, 20.*CV.KPH_TO_MS, 50.*CV.KPH_TO_MS, 70.*CV.KPH_TO_MS, 130.*CV.KPH_TO_MS]
-      ret.gasMaxV = [0.6, 0.65, 0.55, 0.45, 0.35, 0.25]
-
 
     elif candidate == CAR.GENESIS_G70:
       os.system("cd /data/openpilot/selfdrive/assets && rm -rf img_spinner_comma.png && cp Genesis.png img_spinner_comma.png")
@@ -279,8 +263,9 @@ class CarInterface(CarInterfaceBase):
       ret.mass = 1275. + STD_CARGO_KG
       ret.wheelbase = 2.7
       ret.steerRatio = 13.73 * 1.15  # Spec
-      tire_stiffness_factor = 0.385
       ret.centerToFront = ret.wheelbase * 0.4
+      tire_stiffness_factor = 0.385
+      
       if not UseLQR:
         ret.lateralTuning.pid.kf = 0.00005
         ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
@@ -310,8 +295,10 @@ class CarInterface(CarInterfaceBase):
     elif candidate in [CAR.IONIQ, CAR.IONIQ_EV_LTD, CAR.IONIQ_EV_2020, CAR.IONIQ_PHEV]:
       os.system("cd /data/openpilot/selfdrive/assets && rm -rf img_spinner_comma.png && cp Hyundai.png img_spinner_comma.png")
       ret.mass = 1490. + STD_CARGO_KG
+      ret.steerRatio = 13.73  # Spec
       ret.wheelbase = 2.7
       tire_stiffness_factor = 0.385
+      ret.centerToFront = ret.wheelbase * 0.4
       if candidate not in [CAR.IONIQ_EV_2020, CAR.IONIQ_PHEV]:
         ret.minSteerSpeed = 32 * CV.MPH_TO_MS
     elif candidate in [CAR.GRANDEUR_IG, CAR.GRANDEUR_IG_HEV]:
@@ -347,6 +334,7 @@ class CarInterface(CarInterfaceBase):
       os.system("cd /data/openpilot/selfdrive/assets && rm -rf img_spinner_comma.png && cp Kia.png img_spinner_comma.png")
       ret.mass = 1985. + STD_CARGO_KG
       ret.wheelbase = 2.78
+      ret.steerRatio = 14.4 * 1.1   # 10% higher at the center seems reasonable
       tire_stiffness_factor = 0.7
       ret.centerToFront = ret.wheelbase * 0.4
     elif candidate in [CAR.K5, CAR.K5_HEV]:
@@ -354,6 +342,7 @@ class CarInterface(CarInterfaceBase):
       ret.mass = 3558. * CV.LB_TO_KG
       ret.wheelbase = 2.80
       tire_stiffness_factor = 0.7
+      ret.steerRatio = 13.75
       ret.centerToFront = ret.wheelbase * 0.4
     elif candidate == CAR.STINGER:
       os.system("cd /data/openpilot/selfdrive/assets && rm -rf img_spinner_comma.png && cp Stinger.png img_spinner_comma.png")
@@ -385,12 +374,14 @@ class CarInterface(CarInterfaceBase):
       os.system("cd /data/openpilot/selfdrive/assets && rm -rf img_spinner_comma.png && cp Kia.png img_spinner_comma.png")
       ret.mass = 3558. * CV.LB_TO_KG
       ret.wheelbase = 2.80
+      ret.steerRatio = 13.75
       tire_stiffness_factor = 0.7
       ret.centerToFront = ret.wheelbase * 0.4
     elif candidate == CAR.CEED:
       os.system("cd /data/openpilot/selfdrive/assets && rm -rf img_spinner_comma.png && cp Kia.png img_spinner_comma.png")
       ret.mass = 1350. + STD_CARGO_KG
       ret.wheelbase = 2.65
+      ret.steerRatio = 13.75
       tire_stiffness_factor = 0.6
       ret.centerToFront = ret.wheelbase * 0.4
     elif candidate == CAR.SPORTAGE:
