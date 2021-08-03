@@ -327,5 +327,11 @@ class CarController():
       # SPAS12 20Hz
       if (frame % 5) == 0:
         can_sends.append(create_spas12(CS.mdps_bus))
+        activated_hda = road_speed_limiter_get_active()
+      # activated_hda: 0 - off, 1 - main road, 2 - highway
+      if self.car_fingerprint in FEATURES["send_lfa_mfa"]:
+        can_sends.append(create_lfahda_mfc(self.packer, enabled, activated_hda))
+      elif CS.mdps_bus == 0:
+        can_sends.append(create_hda_mfc(self.packer, activated_hda))
 
     return can_sends
