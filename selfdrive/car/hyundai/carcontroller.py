@@ -308,7 +308,7 @@ class CarController():
         if self.en_spas == 7 and self.en_cnt >= 8:
           self.en_spas = 3
           self.en_cnt = 0
-  
+
         if self.en_cnt < 8 and spas_active:
           self.en_spas = 4
         elif self.en_cnt >= 8 and spas_active:
