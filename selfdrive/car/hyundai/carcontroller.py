@@ -169,11 +169,11 @@ class CarController():
 
     controls.clu_speed_ms = clu11_speed * CS.speed_conv_to_ms
 
-    if not (min_set_speed < set_speed < 255 * CV.KPH_TO_MS):
+    if not(min_set_speed < set_speed < 255 * CV.KPH_TO_MS):
       set_speed = min_set_speed
     set_speed *= CV.MS_TO_MPH if CS.is_set_speed_in_mph else CV.MS_TO_KPH
 
-    if frame == 0:  # initialize counts from last received count signals
+    if frame == 0: # initialize counts from last received count signals
       self.lkas11_cnt = CS.lkas11["CF_Lkas_MsgCount"]
       self.scc12_cnt = CS.scc12["CR_VSM_Alive"] + 1 if not CS.no_radar else 0
 
@@ -183,13 +183,13 @@ class CarController():
 
     # check if SCC is alive
     # if frame % 7 == 0:
-    # if CS.scc11["AliveCounterACC"] == self.prev_scc_cnt:
-    # if frame - self.scc_update_frame > 20 and self.scc_live:
-    # self.scc_live = False
-    # else:
-    # self.scc_live = True
-    # self.prev_scc_cnt = CS.scc11["AliveCounterACC"]
-    # self.scc_update_frame = frame
+      # if CS.scc11["AliveCounterACC"] == self.prev_scc_cnt:
+        # if frame - self.scc_update_frame > 20 and self.scc_live:
+          # self.scc_live = False
+      # else:
+        # self.scc_live = True
+        # self.prev_scc_cnt = CS.scc11["AliveCounterACC"]
+        # self.scc_update_frame = frame
 
     self.prev_scc_cnt = CS.scc11["AliveCounterACC"]
 
@@ -201,7 +201,7 @@ class CarController():
                                    CS.lkas11, sys_warning, sys_state, enabled, left_lane, right_lane,
                                    left_lane_warning, right_lane_warning, 0))
 
-    if CS.mdps_bus or CS.scc_bus == 1:  # send lkas11 bus 1 if mdps or scc is on bus 1
+    if CS.mdps_bus or CS.scc_bus == 1: # send lkas11 bus 1 if mdps or scc is on bus 1
       can_sends.append(create_lkas11(self.packer, frame, self.car_fingerprint, apply_steer, lkas_active,
                                      CS.lkas11, sys_warning, sys_state, enabled, left_lane, right_lane,
                                      left_lane_warning, right_lane_warning, 1))
