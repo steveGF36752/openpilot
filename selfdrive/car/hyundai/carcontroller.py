@@ -104,15 +104,13 @@ class CarController():
                        CarControllerParams.ACCEL_MIN, CarControllerParams.ACCEL_MAX)
 
     # Steering Torque
-    new_steer = int(round(actuators.steer * CarControllerParams.STEER_MAX))
-    apply_steer = apply_std_steer_torque_limits(new_steer, self.apply_steer_last, CS.out.steeringTorque,
-                                                CarControllerParams)
-
+    new_steer = actuators.steer * CarControllerParams.STEER_MAX
+    apply_steer = apply_std_steer_torque_limits(new_steer, self.apply_steer_last, CS.out.steeringTorque, CarControllerParams)
     self.steer_rate_limited = new_steer != apply_steer
 
     # SPAS limit angle extremes for safety
     if CS.spas_enabled:
-      apply_steer_ang_req = CS.out.steeringAngleDeg
+      apply_steer_ang_req = clip(actuators.steerAngle, -1*(STEER_ANG_MAX), STEER_ANG_MAX)
       # SPAS limit angle rate for safety
       if abs(self.apply_steer_ang - apply_steer_ang_req) > STEER_ANG_MAX_RATE:
         if apply_steer_ang_req > self.apply_steer_ang:
